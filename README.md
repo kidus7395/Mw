@@ -1,13 +1,4 @@
-Absolutely! Below is the full working C++ program that uses cin to enter two numbers and any one of the five arithmetic operators:
 
-✅ Supported operators: +, -, *, /, %
-✅ Functions used: add, subtract, multiply, divide, remainder
-✅ Handles division by zero safely
-
-
----
-
-✅ Updated Full C++ Code:
 
 #include <iostream>
 using namespace std;
