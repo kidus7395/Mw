@@ -1,47 +1,12 @@
-#include <iostream>
-using namespace std;
+🚀 Assignment: C++ Calculator with Functions and Switch Statement
+Write a C++ program that:
+1. Asks the user to input two numbers
+2. Asks the user to choose an operator: +, , , /
+3. Uses a switch statement to perform the chosen operation
+4. Implements each operation in its own function (e.g., add(), subtract(), etc.)
+5. Displays the result
+6. Handles division by zero properly
+7. Uses clean, readable code (comments, indentation, etc.)
 
-// Addition function
-int add(int a, int b) {
-    return a + b;
-}
-
-// Subtraction function
-int subtract(int a, int b) {
-    return a - b;
-}
-
-// Multiplication function
-int multiply(int a, int b) {
-    return a * b;
-}
-
-// Division function
-float divide(int a, int b) {
-    if (b == 0) {
-        cout << "Error: Division by zero!" << endl;
-        return 0;
-    }
-    return (float)a / b;
-}
-
-// Remainder function
-int remainder(int a, int b) {
-    if (b == 0) {
-        cout << "Error: Division by zero!" << endl;
-        return 0;
-    }
-    return a % b;
-}
-
-int main() {
-    int x = 10, y = 3;
-
-    cout << "Addition: " << add(x, y) << endl;
-    cout << "Subtraction: " << subtract(x, y) << endl;
-    cout << "Multiplication: " << multiply(x, y) << endl;
-    cout << "Division: " << divide(x, y) << endl;
-    cout << "Remainder: " << remainder(x, y) << endl;
-
-    return 0;
-}
+📦 Bonus (Optional):
+Add a loop to allow multiple calculations until the user chooses to exit
