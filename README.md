@@ -1,78 +1,95 @@
-
-
 #include <iostream>
+#include <string>
 using namespace std;
 
-// Addition function
-int add(int a, int b) {
-    return a + b;
+struct Driver {
+    int id;
+    string fname, lname;
+    string licenseNo;
+    string licenseExpiry;
+};
+
+const int MAX = 100;
+Driver drivers[MAX];
+int n = 0;
+
+void addDriver() {
+    Driver d;
+    cout << "ID: "; cin >> d.id;
+    cout << "First name: "; cin >> d.fname;
+    cout << "Last name: "; cin >> d.lname;
+    cout << "License Number: "; cin >> d.licenseNo;
+    cout << "License Expiry (YYYY-MM-DD): "; cin >> d.licenseExpiry;
+    drivers[n++] = d;
 }
 
-// Subtraction function
-int subtract(int a, int b) {
-    return a - b;
-}
-
-// Multiplication function
-int multiply(int a, int b) {
-    return a * b;
-}
-
-// Division function
-float divide(int a, int b) {
-    if (b == 0) {
-        cout << "Error: Division by zero!" << endl;
-        return 0;
+void showAll() {
+    for(int i = 0; i < n; i++) {
+        cout << "ID: " << drivers[i].id << ", "
+             << "Name: " << drivers[i].fname << " " << drivers[i].lname << ", "
+             << "License No: " << drivers[i].licenseNo << ", "
+             << "Expiry: " << drivers[i].licenseExpiry << "\n";
     }
-    return (float)a / b;
 }
 
-// Remainder function
-int remainder(int a, int b) {
-    if (b == 0) {
-        cout << "Error: Division by zero!" << endl;
-        return 0;
+int findByID(int id) {
+    for(int i = 0; i < n; i++) {
+        if(drivers[i].id == id) return i;
     }
-    return a % b;
+    return -1;
+}
+
+void updateDriver() {
+    int id;
+    cout << "Enter Driver ID to update: ";
+    cin >> id;
+    int idx = findByID(id);
+    if(idx == -1) {
+        cout << "Driver not found.\n";
+        return;
+    }
+    cout << "New License Number: ";
+    cin >> drivers[idx].licenseNo;
+    cout << "New License Expiry (YYYY-MM-DD): ";
+    cin >> drivers[idx].licenseExpiry;
+}
+
+void deleteDriver() {
+    int id;
+    cout << "Enter Driver ID to delete: ";
+    cin >> id;
+    int idx = findByID(id);
+    if(idx == -1) {
+        cout << "Driver not found.\n";
+        return;
+    }
+    for(int i = idx; i < n - 1; i++) {
+        drivers[i] = drivers[i + 1];
+    }
+    n--;
 }
 
 int main() {
-    int x, y;
-    char op;
+    int choice;
+    do {
+        cout << "\nDriver Management System\n";
+        cout << "1. Add Driver\n";
+        cout << "2. Show All Drivers\n";
+        cout << "3. Update Driver\n";
+        cout << "4. Delete Driver\n";
+        cout << "0. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-    // User input
-    cout << "Enter first number: ";
-    cin >> x;
-
-    cout << "Enter operator (+, -, *, /, %): ";
-    cin >> op;
-
-    cout << "Enter second number: ";
-    cin >> y;
-
-    // Operator handling using switch
-    switch(op) {
-        case '+':
-            cout << "Result: " << add(x, y) << endl;
-            break;
-        case '-':
-            cout << "Result: " << subtract(x, y) << endl;
-            break;
-        case '*':
-            cout << "Result: " << multiply(x, y) << endl;
-            break;
-        case '/':
-            cout << "Result: " << divide(x, y) << endl;
-            break;
-        case '%':
-            cout << "Result: " << remainder(x, y) << endl;
-            break;
-        default:
-            cout << "Invalid operator!" << endl;
-    }
+        switch(choice) {
+            case 1: addDriver(); break;
+            case 2: showAll(); break;
+            case 3: updateDriver(); break;
+            case 4: deleteDriver(); break;
+            case 0: cout << "Exiting...\n"; break;
+            default: cout << "Invalid choice.\n";
+        }
+    } while(choice != 0);
 
     return 0;
 }
-
-
-
